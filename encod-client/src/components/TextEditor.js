@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from "react";
 import io from "socket.io-client";
+import CodeMirror from '@uiw/react-codemirror';
 
 const socket = io.connect("http://localhost:4000/")
 
@@ -20,7 +21,10 @@ function TextEditor(props) {
     }
     
     function sendData(value){
-        var res = value.target.value
+        //console.log("value from components ", value)
+        //var res = value.target.value
+
+        var res = value;
         
         socket.emit("message", {value : res, groupId : client_group_id})
         setCode(res)
@@ -28,8 +32,14 @@ function TextEditor(props) {
     return (
         <div className="App">
         <h1> Enter code</h1>
-        
-        <textarea onChange={sendData} value={code}/>
+    
+        <CodeMirror
+      value={code}
+      height="200px"
+      onChange={(value, viewUpdate) => {
+        sendData(value);
+      }}
+    />
         </div>
         );
     }

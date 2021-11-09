@@ -12,7 +12,7 @@ function Header() {
         </div>
         <div class="flex space-x-4 items-center">
           <a href="#" class="hover:text-gray-600 text-gray-900">How it Works?</a>
-          <a href="#" class="hover:text-gray-600 text-gray-900">Contribute</a>
+          <a href="https://github.com/sumansid/Encod" class="hover:text-gray-600 text-gray-900">Contribute</a>
           
         </div>
       </div>
