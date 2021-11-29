@@ -7,7 +7,7 @@ import "./TextEditor.css"
 import { javascript } from "@codemirror/lang-javascript";
 
 const socket = io.connect("http://localhost:4000/")
-
+console.log("process env", process.env);
 console.log("env server url",process.env.SERVER_URL);
 
 function TextEditor(props) {
