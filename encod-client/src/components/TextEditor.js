@@ -3,9 +3,10 @@ import io from "socket.io-client";
 //import CodeMirror from 'react-codemirror'
 import CodeMirror from '@uiw/react-codemirror';
 import 'codemirror/lib/codemirror.css'
+import "./TextEditor.css"
 import { javascript } from "@codemirror/lang-javascript";
 
-const socket = io.connect("http://localhost:4000/")
+const socket = io.connect(process.env.SERVER_URL || "http://localhost:4000/")
 
 function TextEditor(props) {
     const client_group_id = props.groupId;
@@ -40,7 +41,7 @@ function TextEditor(props) {
         <CodeMirror
         
         value={code}
-        height="200px"
+        height={230}
         extensions={[javascript({ jsx: true })]}
        
         onChange={(value, viewUpdate) => {
