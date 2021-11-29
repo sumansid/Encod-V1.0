@@ -6,9 +6,7 @@ import 'codemirror/lib/codemirror.css'
 import "./TextEditor.css"
 import { javascript } from "@codemirror/lang-javascript";
 
-const socket = io.connect("http://localhost:4000/")
-console.log("process env", process.env);
-console.log("env server url",process.env.SERVER_URL);
+const socket = io.connect("https://encod-app.herokuapp.com/")
 
 function TextEditor(props) {
     const client_group_id = props.groupId;
