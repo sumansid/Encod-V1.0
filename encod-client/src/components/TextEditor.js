@@ -4,14 +4,25 @@ import io from "socket.io-client";
 import CodeMirror from '@uiw/react-codemirror';
 import 'codemirror/lib/codemirror.css'
 import "./TextEditor.css"
-import Select from "./Select";
 import { javascript } from "@codemirror/lang-javascript";
 import {python} from "@codemirror/lang-python";
+
+
 
 
 const socket = io.connect("https://encod-app.herokuapp.com/")
 
 function TextEditor(props) {
+
+
+    function downloadAsFile() {
+        const element = document.createElement("a");
+        const file = new Blob([code], {type: 'text/plain'});
+        element.href = URL.createObjectURL(file);
+        element.download = "codeFile." + props.codeSyntax.ext;
+        document.body.appendChild(element); // Required for this to work in FireFox
+        element.click();
+  }
 
     const client_group_id = props.groupId;
 
@@ -40,7 +51,13 @@ function TextEditor(props) {
     }
     return (
        
-    
+        <div>
+
+
+<button type="button" className="m-2 py-2 px-4  bg-gray-900 hover:bg-gray-600 focus:ring-gray-900 focus:ring-offset-gray-200 text-white  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg " onClick={downloadAsFile}>
+    Download Code
+</button>
+
         <CodeMirror
         
         value={code}
@@ -51,6 +68,8 @@ function TextEditor(props) {
             sendData(value);
         }}
         />
+
+        </div>
      
 
         );
