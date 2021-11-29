@@ -2,6 +2,7 @@
   "name": "encod-ui",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@craco/craco": "^6.4.0",
     "@heroicons/react": "^1.0.5",

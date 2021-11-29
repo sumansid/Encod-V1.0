@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter,useHistory, Route, Redirect, withRouter} from "react-router-dom";
+import {BrowserRouter, HashRouter,useHistory, Route, Redirect, withRouter} from "react-router-dom";
 import Button from './components/Button';
 import Header from './components/Header';
 import TeamEditor from './components/TeamEditor';
@@ -13,7 +13,7 @@ function App() {
   }
   return (
 
-    <BrowserRouter>
+    <HashRouter>
       <Route path="/" exact render={() => {
         return (<div className="App">
     <Header/>
@@ -21,7 +21,7 @@ function App() {
     </div>)
       }}></Route>
       <Route path="/group/:id" component={TeamEditor}></Route>
-    </BrowserRouter>
+    </HashRouter>
 
 
   );
