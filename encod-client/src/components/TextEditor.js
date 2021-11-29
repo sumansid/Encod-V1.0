@@ -6,7 +6,9 @@ import 'codemirror/lib/codemirror.css'
 import "./TextEditor.css"
 import { javascript } from "@codemirror/lang-javascript";
 
-const socket = io.connect(process.env.SERVER_URL || "http://localhost:4000/")
+const socket = io.connect("http://localhost:4000/")
+
+console.log("env server url",process.env.SERVER_URL);
 
 function TextEditor(props) {
     const client_group_id = props.groupId;
