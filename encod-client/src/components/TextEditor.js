@@ -4,14 +4,18 @@ import io from "socket.io-client";
 import CodeMirror from '@uiw/react-codemirror';
 import 'codemirror/lib/codemirror.css'
 import "./TextEditor.css"
+import Select from "./Select";
 import { javascript } from "@codemirror/lang-javascript";
+import {python} from "@codemirror/lang-python";
+
 
 const socket = io.connect("https://encod-app.herokuapp.com/")
 
 function TextEditor(props) {
+
     const client_group_id = props.groupId;
-    
-    const [code, setCode] = useState("function helloWorld(){}")
+
+    const [code, setCode] = useState("/* Enter your code here  */ ")
     
     useEffect(() => {
         socket.on(`message-${client_group_id}`, handleCodeArea)
@@ -35,20 +39,20 @@ function TextEditor(props) {
         setCode(res)
     }
     return (
-        <div className="App">
-        <h1> Enter code</h1>
-        
+       
+    
         <CodeMirror
         
         value={code}
-        height={230}
-        extensions={[javascript({ jsx: true })]}
+        height="auto"
+        extensions={[props.codeSyntax.value]}
        
         onChange={(value, viewUpdate) => {
             sendData(value);
         }}
         />
-        </div>
+     
+
         );
     }
     
