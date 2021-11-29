@@ -18,8 +18,6 @@ function App() {
         return (<div className="App">
     <Header/>
     <Button name="Create Room" clickHandler={createRoomButtonHandler}/>
-    <Button name="Join Existing Room"/>
-
     </div>)
       }}></Route>
       <Route path="/group/:id" component={TeamEditor}></Route>

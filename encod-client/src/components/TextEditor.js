@@ -4,7 +4,7 @@ import CodeMirror from 'react-codemirror'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/javascript/javascript';
 
-const socket = io.connect("http://localhost:4000/")
+const socket = io.connect("https://encod-app.herokuapp.com/")
 
 function TextEditor(props) {
     const client_group_id = props.groupId;

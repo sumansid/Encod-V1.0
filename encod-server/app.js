@@ -4,6 +4,7 @@ const http = require("http");
 const path = require("path");
 const server = http.createServer(app);
 const roomLookup = {};
+require("dotenv").config();
 const port = process.env.PORT || 4000;
 
 const io = require("socket.io")(server, {
@@ -19,13 +20,6 @@ app.use(cors({
   origin:"*"
 }))
 
-if (process.env.NODE_ENV === "production"){
-  app.use(express.static("build"))
-  app.get("*", (req, res) => {
-    req.sendFile(path.resolve(__dirname, "encod-client/build", "index.html"))
-  })
-  
-}
 
 
 server.listen(port, function(){
