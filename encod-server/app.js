@@ -52,15 +52,5 @@ io.on('connection', function(client){
 })
 
 
-function makeNewRoomID() {
-  var generatedRoomCode = '';
-  var letters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  var lettersLength = letters.length;
-  for ( var i = 0; i < 6; i++ ) {
-    generatedRoomCode += letters.charAt(Math.floor(Math.random() * lettersLength));
-  }
-  return generatedRoomCode;
-}
-
 
 

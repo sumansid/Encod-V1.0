@@ -4,6 +4,7 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
+    "@codemirror/lang-javascript": "^0.19.3",
     "@craco/craco": "^6.4.0",
     "@heroicons/react": "^1.0.5",
     "@testing-library/jest-dom": "^5.11.4",

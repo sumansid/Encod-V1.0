@@ -1,10 +1,11 @@
 import React,{useState, useEffect} from "react";
 import io from "socket.io-client";
-import CodeMirror from 'react-codemirror'
+//import CodeMirror from 'react-codemirror'
+import CodeMirror from '@uiw/react-codemirror';
 import 'codemirror/lib/codemirror.css'
-import 'codemirror/mode/javascript/javascript';
+import { javascript } from "@codemirror/lang-javascript";
 
-const socket = io.connect("https://encod-app.herokuapp.com/")
+const socket = io.connect("http://localhost:4000/")
 
 function TextEditor(props) {
     const client_group_id = props.groupId;
@@ -19,7 +20,9 @@ function TextEditor(props) {
         
         console.log("receiving from the server ", newCode)
         console.log("receiving from the server ", typeof(newCode))
+        
         setCode(newCode)
+        console.log("code after setting ", code)
     }
     
     function sendData(value){
@@ -38,11 +41,8 @@ function TextEditor(props) {
         
         value={code}
         height="200px"
-        options={{
-            lineNumbers: true,
-            readOnly: false,
-            mode: "javascript"
-        }}
+        extensions={[javascript({ jsx: true })]}
+       
         onChange={(value, viewUpdate) => {
             sendData(value);
         }}
