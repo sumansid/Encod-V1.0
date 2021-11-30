@@ -44,11 +44,6 @@ io.on('connection', function(client){
     roomLookup[client.id] = newRoomID;
   }
   
-  
-  function joinExistingRoom(){
-    
-  }
-  
 })
 
 

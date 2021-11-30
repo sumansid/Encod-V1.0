@@ -10,9 +10,20 @@ import {python} from "@codemirror/lang-python";
 
 
 
-const socket = io.connect("https://encod-app.herokuapp.com/")
+//const socket = io.connect("https://encod-app.herokuapp.com/")
 
 function TextEditor(props) {
+
+    const [socket, setSocket] = useState();
+
+    useEffect(()=>{
+        const s = io("https://encod-app.herokuapp.com/")
+        setSocket(s);
+
+        return () => {
+            s.disconnect()
+        }
+    },[])
 
 
     function downloadAsFile() {
@@ -29,8 +40,9 @@ function TextEditor(props) {
     const [code, setCode] = useState("/* Enter your code here  */ ")
     
     useEffect(() => {
+        if (socket == null){return }
         socket.on(`message-${client_group_id}`, handleCodeArea)
-    })
+    },[socket])
     
     function handleCodeArea(newCode){
         
@@ -47,7 +59,7 @@ function TextEditor(props) {
         
         var res = value;
         socket.emit("message", {value : res, groupId : client_group_id})
-        setCode(res)
+        //setCode(res)
     }
     return (
        
@@ -65,6 +77,7 @@ function TextEditor(props) {
         extensions={[props.codeSyntax.value]}
        
         onChange={(value, viewUpdate) => {
+            console.log("change")
             sendData(value);
         }}
         />
