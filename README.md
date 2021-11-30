@@ -35,6 +35,6 @@ Pull requests are welcome !
 ## Resources
 
 * https://tailwindcss.com/ 
-* https://www.npmjs.com/package/@uiw/react-codemirror
 * https://socket.io/
 * https://reactjs.org/
+* https://codemirror.net/
