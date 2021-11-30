@@ -6,7 +6,6 @@ import TeamEditor from './components/TeamEditor';
 
 function App() {
 
-
   function createRoomButtonHandler(event){
     window.location.href=`#/group/${Date.now()}`
   }

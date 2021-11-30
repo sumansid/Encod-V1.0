@@ -3,8 +3,7 @@ import {RouteComponentProps} from "react-router-dom";
 import TextEditor from './TextEditor';
 import Header from './Header';
 import Select from './Select';
-import { javascript } from "@codemirror/lang-javascript";
-import {python} from "@codemirror/lang-python";
+
 
 
 function TeamEditor(props) {
@@ -21,7 +20,14 @@ function TeamEditor(props) {
       label: "Python",
       value: "python",
       ext:"py"
+    },
+    {
+      id: "3",
+      label: "Java",
+      value: "text/x-java",
+      ext:"java"
     }
+
 
   ];
 
@@ -43,6 +49,7 @@ function TeamEditor(props) {
             setCurrentExtension(event);
           }}
         />
+        
         </div>
         <TextEditor groupId={id} codeSyntax = {currentExtension}/> 
         </div>

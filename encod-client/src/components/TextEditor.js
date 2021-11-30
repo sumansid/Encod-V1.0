@@ -5,13 +5,12 @@ import CodeMirror from 'codemirror'
 import 'codemirror/lib/codemirror.css'
 import "./TextEditor.css"
 import 'codemirror/theme/material-ocean.css'
+import 'codemirror/theme/3024-night.css'
+import 'codemirror/theme/blackboard.css'
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/mode/python/python'
+import 'codemirror/mode/clike/clike'
 import 'codemirror/keymap/sublime'
-import { javascript } from "@codemirror/lang-javascript";
-import {python} from "@codemirror/lang-python";
-
-
 
 
 //const socket = io.connect("https://encod-app.herokuapp.com/")
@@ -39,7 +38,6 @@ function TextEditor(props) {
             lineNumbers: true,
                 keyMap: 'sublime',
                 height:"auto",
-                
                 mode: "javascript",
         
         })
@@ -47,12 +45,9 @@ function TextEditor(props) {
     setEditor(e);
     },[])
 
-    
-
     useEffect(()=>{
         if (editor == null){return}
-       
-        
+    
             const s = io.connect("https://encod-app.herokuapp.com/")
             setSocket(s);
             editor.on('change', (instance, changes) => {
@@ -60,7 +55,6 @@ function TextEditor(props) {
                 if (origin !== 'setValue') {
                     var res = instance.getValue();
                     s.emit("message", {value : res, groupId : client_group_id})
-                    
                 }
             })
 
@@ -77,8 +71,6 @@ function TextEditor(props) {
     useEffect(()=>{
         if (editor == null){return}
         console.log("changed ", props.codeSyntax.value)
-        
-       
             editor.setOption("mode",props.codeSyntax.value);
             console.log("editor mode ", editor.mode)
         },[props.codeSyntax.value, editor])
@@ -89,11 +81,9 @@ function TextEditor(props) {
         <div>
 
 
-<button type="button" className="m-2 py-2 px-4  bg-gray-900 hover:bg-gray-600 text-white  transition ease-in duration-200 text-center text-base font-semibold shadow-md rounded-lg " onClick={downloadAsFile}>
-    Download Code
-</button>
-
-    
+        <button type="button" className="m-2 py-2 px-4  bg-gray-900 hover:bg-gray-600 text-white  transition ease-in duration-200 text-center text-base font-semibold shadow-md rounded-lg " onClick={downloadAsFile}>
+            Download Code
+        </button>
 
         <textarea id="codemirror" value="// Enter code here"/>
 
@@ -104,4 +94,3 @@ function TextEditor(props) {
     }
     
 export default TextEditor
-    
