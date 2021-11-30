@@ -1,3 +1,4 @@
-textarea.code.inline + div.CodeMirror div.CodeMirror-lines {
-  padding: 0px !important; /* added !important as padding is an inline stlye */
+.CodeMirror {
+  border: 3px solid #eee;
+  height: auto;
 }

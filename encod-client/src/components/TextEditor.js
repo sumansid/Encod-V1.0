@@ -1,9 +1,13 @@
 import React,{useState, useEffect} from "react";
 import io from "socket.io-client";
-//import CodeMirror from 'react-codemirror'
-import CodeMirror from '@uiw/react-codemirror';
+import CodeMirror from 'codemirror'
+//import CodeMirror from '@uiw/react-codemirror';
 import 'codemirror/lib/codemirror.css'
 import "./TextEditor.css"
+import 'codemirror/theme/material-ocean.css'
+import 'codemirror/mode/javascript/javascript'
+import 'codemirror/mode/python/python'
+import 'codemirror/keymap/sublime'
 import { javascript } from "@codemirror/lang-javascript";
 import {python} from "@codemirror/lang-python";
 
@@ -15,16 +19,9 @@ import {python} from "@codemirror/lang-python";
 function TextEditor(props) {
 
     const [socket, setSocket] = useState();
+    const [editor, setEditor] = useState();
 
-    useEffect(()=>{
-        const s = io("https://encod-app.herokuapp.com/")
-        setSocket(s);
-
-        return () => {
-            s.disconnect()
-        }
-    },[])
-
+    const [code, setCode] = useState("/* Enter your code here  */ ")
 
     function downloadAsFile() {
         const element = document.createElement("a");
@@ -37,30 +34,56 @@ function TextEditor(props) {
 
     const client_group_id = props.groupId;
 
-    const [code, setCode] = useState("/* Enter your code here  */ ")
-    
-    useEffect(() => {
-        if (socket == null){return }
-        socket.on(`message-${client_group_id}`, handleCodeArea)
-    },[socket])
-    
-    function handleCodeArea(newCode){
+    useEffect(()=>{
+     const e = CodeMirror.fromTextArea(document.getElementById('codemirror'), {
+            lineNumbers: true,
+                keyMap: 'sublime',
+                height:"auto",
+                
+                mode: "javascript",
         
-        console.log("receiving from the server ", newCode)
-        console.log("receiving from the server ", typeof(newCode))
+        })
         
-        setCode(newCode)
-        console.log("code after setting ", code)
-    }
+    setEditor(e);
+    },[])
+
     
-    function sendData(value){
-        //console.log("value from components ", value)
-        //var res = value.target.value
+
+    useEffect(()=>{
+        if (editor == null){return}
+       
         
-        var res = value;
-        socket.emit("message", {value : res, groupId : client_group_id})
-        //setCode(res)
-    }
+            const s = io.connect("https://encod-app.herokuapp.com/")
+            setSocket(s);
+            editor.on('change', (instance, changes) => {
+                const { origin } = changes;
+                if (origin !== 'setValue') {
+                    var res = instance.getValue();
+                    s.emit("message", {value : res, groupId : client_group_id})
+                    
+                }
+            })
+
+            s.on(`message-${client_group_id}`, (newCode) => {
+                setCode(newCode)
+                editor.setValue(newCode)
+            })
+
+            return () => {
+                s.disconnect()
+            }
+        },[editor])
+
+    useEffect(()=>{
+        if (editor == null){return}
+        console.log("changed ", props.codeSyntax.value)
+        
+       
+            editor.setOption("mode",props.codeSyntax.value);
+            console.log("editor mode ", editor.mode)
+        },[props.codeSyntax.value, editor])
+
+
     return (
        
         <div>
@@ -70,17 +93,9 @@ function TextEditor(props) {
     Download Code
 </button>
 
-        <CodeMirror
-        
-        value={code}
-        height="auto"
-        extensions={[props.codeSyntax.value]}
-       
-        onChange={(value, viewUpdate) => {
-            console.log("change")
-            sendData(value);
-        }}
-        />
+    
+
+        <textarea id="codemirror" value="// Enter code here"/>
 
         </div>
      

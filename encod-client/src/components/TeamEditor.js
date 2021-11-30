@@ -13,13 +13,13 @@ function TeamEditor(props) {
     {
       id: "1",
       label: "Javascript",
-      value: javascript(),
+      value: "javascript",
       ext : "js"
     },
     {
       id: "2",
       label: "Python",
-      value: python(),
+      value: "python",
       ext:"py"
     }
 

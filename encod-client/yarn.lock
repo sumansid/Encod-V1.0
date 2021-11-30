@@ -3770,10 +3770,10 @@
     "chalk" "^2.4.1"
     "q" "^1.1.2"
 
-"codemirror@^5.18.2", "codemirror@^5.63.3":
-  "integrity" "sha512-1C+LELr+5grgJYqwZKqxrcbPsHFHapVaVAloBsFBASbpLnQqLw1U8yXJ3gT5D+rhxIiSpo+kTqN+hQ+9ialIXw=="
-  "resolved" "https://registry.npmjs.org/codemirror/-/codemirror-5.63.3.tgz"
-  "version" "5.63.3"
+"codemirror@^5.18.2", "codemirror@^5.64.0":
+  "integrity" "sha512-fqr6CtDQdJ6iNMbD8NX2gH2G876nNDk+TO1rrYkgWnqQdO3O1Xa9tK6q+psqhJJgE5SpbaDcgdfLmukoUVE8pg=="
+  "resolved" "https://registry.npmjs.org/codemirror/-/codemirror-5.64.0.tgz"
+  "version" "5.64.0"
 
 "collect-v8-coverage@^1.0.0":
   "integrity" "sha512-iBPtljfCNcTKNAto0KEtDfZ3qzjJvqE3aTGZsbhjSBlorqpXJlaWWtPO35D+ZImoC3KWejX64o+yPGxhWSTzfg=="
