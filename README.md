@@ -3,7 +3,7 @@
 #
 Encod is an online code editor that lets you share code in real-time. Encod is built using React JS (CRA), Tailwind CSS, Websockets and Node Js. Deployed on : [https://encod.netlify.app/](https://encod.netlify.app/)
 
-Supported programming languages : Python, Javascript
+Supported programming languages : Python, Javascript, Java
 
 
 ## How it works
