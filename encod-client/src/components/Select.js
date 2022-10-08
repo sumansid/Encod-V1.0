@@ -98,7 +98,7 @@ const Select = ({
                             <li
                               className={`${
                                 active
-                                  ? "text-white bg-indigo-600"
+                                  ? "text-white bg-gray-600"
                                   : "text-gray-900"
                               } cursor-default select-none relative py-2 pl-3 pr-9`}
                             >
@@ -113,7 +113,7 @@ const Select = ({
                                 {selected && (
                                   <span
                                     className={`${
-                                      active ? "text-white" : "text-indigo-600"
+                                      active ? "text-white" : "text-gray-900"
                                     } absolute inset-y-0 right-0 flex items-center mr-3 pl-1.5`}
                                   >
                                     <Selected />
